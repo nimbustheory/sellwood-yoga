@@ -314,7 +314,7 @@ function HomePage() {
     <div className="pb-6">
       {/* Hero */}
       <section style={{ background: `linear-gradient(165deg, ${T.bg} 0%, hsl(28,22%,18%) 100%)`, color: "#fff", padding: "32px 22px", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${STUDIO_IMAGES.heroMain})`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.3 }} />
+        <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${STUDIO_IMAGES.heroMain})`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.21 }} />
         <div style={{ position: "absolute", inset: 0, opacity: 0.05, background: "radial-gradient(circle at 70% 20%, rgba(255,255,255,.3) 0%, transparent 60%)" }} />
         <div style={{ position: "relative" }}>
           <p style={{ color: T.accent, fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 8 }}>
