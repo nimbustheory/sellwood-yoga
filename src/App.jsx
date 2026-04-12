@@ -3,7 +3,7 @@ import {
   Home, Calendar, TrendingUp, Users, CreditCard, CalendarDays,
   Menu, X, Bell, Settings, Shield, ChevronRight, ChevronDown, Clock,
   PartyPopper, ArrowUpRight, ArrowDownRight, Award, DollarSign, LayoutDashboard,
-  UserCheck, Megaphone, LogOut, Plus, Edit3, Send, Check, Search, Copy, Info,
+  UserCheck, Megaphone, LogOut, Plus, Edit3, Send, Check, Search, Copy, Info, ArrowLeft, Tag,
   CircleCheck, UserPlus, Heart, Flame, Star, Sun, Moon, Wind, Sparkles,
   Mountain, Leaf, Music, Gift, Share2, MapPin, TreePine, Flower2, CloudRain
 } from "lucide-react";
@@ -616,7 +616,7 @@ function CommunityPage() {
 
   return (
     <div>
-      <PageHero title="Community" subtitle="Celebrate each other's milestones and growth" image={STUDIO_IMAGES.aboutStudio1} />
+      <PageHero title="Community" subtitle="Celebrate each other's milestones and growth" image={STUDIO_IMAGES.workshops} />
       <div style={{ padding: "16px 16px 0" }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         {COMMUNITY_FEED.map(item => {
@@ -1085,6 +1085,44 @@ function AdminBroadcastPage() {
   );
 }
 
+function AdminPricingPage() {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, color: "#fff", margin: 0 }}>Pricing & Plans</h1>
+        <button style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 16px", borderRadius: 8, border: "none", background: T.accent, color: "#fff", fontWeight: 600, fontSize: 13, cursor: "pointer" }}>
+          <Plus size={16} /> Add Plan
+        </button>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 14 }}>
+        {MEMBERSHIP_TIERS.map(tier => (
+          <div key={tier.id} style={{ background: "#1f2218", border: `1px solid ${tier.popular ? T.accent : "#3a3528"}`, borderRadius: 12, padding: 18, position: "relative" }}>
+            {tier.popular && (
+              <span style={{ position: "absolute", top: 12, right: 12, fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 4, background: `${T.accent}20`, color: T.accent }}>POPULAR</span>
+            )}
+            <h3 style={{ fontSize: 18, fontWeight: 700, color: "#fff", margin: "0 0 4px" }}>{tier.name}</h3>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 12 }}>
+              <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 32, color: T.accent, fontWeight: 700 }}>${tier.price}</span>
+              <span style={{ fontSize: 13, color: "#9ca3af" }}>{tier.period}</span>
+            </div>
+            <ul style={{ listStyle: "none", padding: 0, margin: "0 0 14px" }}>
+              {tier.features.map((f, i) => (
+                <li key={i} style={{ display: "flex", alignItems: "center", gap: 6, padding: "3px 0", fontSize: 12, color: "#d1d5db" }}>
+                  <CircleCheck size={12} color={T.accent} style={{ flexShrink: 0 }} /> {f}
+                </li>
+              ))}
+            </ul>
+            <div style={{ display: "flex", gap: 6 }}>
+              <button style={{ flex: 1, padding: "8px 0", borderRadius: 6, border: "1px solid #3a3528", background: "transparent", color: "#d1d5db", fontSize: 12, fontWeight: 600, cursor: "pointer" }}>Edit</button>
+              <button style={{ flex: 1, padding: "8px 0", borderRadius: 6, border: "1px solid #3a3528", background: "transparent", color: "#d1d5db", fontSize: 12, fontWeight: 600, cursor: "pointer" }}>Disable</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ═══════════════════════════════════════════════════════════════
 //  SHARED COMPONENTS
 // ═══════════════════════════════════════════════════════════════
@@ -1239,7 +1277,7 @@ function SettingsModal({ onClose }) {
   );
 
   return (
-    <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,.5)", backdropFilter: "blur(4px)", zIndex: 100, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+    <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,.5)", backdropFilter: "blur(4px)", zIndex: 100, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
       <div onClick={e => e.stopPropagation()} style={{ background: T.bgCard, borderRadius: "20px 20px 0 0", width: "100%", maxWidth: 390, maxHeight: "85vh", overflow: "auto", padding: "20px 20px 40px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 26, margin: 0 }}>Settings</h2>
@@ -1299,7 +1337,7 @@ function NotificationsModal({ onClose }) {
   ];
 
   return (
-    <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,.5)", backdropFilter: "blur(4px)", zIndex: 100, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+    <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,.5)", backdropFilter: "blur(4px)", zIndex: 100, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
       <div onClick={e => e.stopPropagation()} style={{ background: T.bgCard, borderRadius: "20px 20px 0 0", width: "100%", maxWidth: 390, maxHeight: "80vh", overflow: "auto", padding: "20px 20px 40px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 26, margin: 0 }}>Notifications</h2>
@@ -1335,7 +1373,7 @@ function ReservationModal({ classData, onConfirm, onClose }) {
   };
 
   return (
-    <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,.5)", backdropFilter: "blur(4px)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,.5)", backdropFilter: "blur(4px)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center" }}>
       <div onClick={e => e.stopPropagation()} style={{ background: T.bgCard, borderRadius: 20, width: "90%", maxWidth: 360, padding: "28px 24px", textAlign: "center" }}>
         {confirmed ? (
           <>
@@ -1417,10 +1455,11 @@ export default function App({ onAdminChange, initialAdmin = false }) {
 
   const adminTabs = [
     { id: "admin-dashboard", label: "Dashboard", icon: LayoutDashboard },
-    { id: "admin-members", label: "Members", icon: UserCheck },
     { id: "admin-schedule", label: "Schedule", icon: Calendar },
+    { id: "admin-members", label: "Members", icon: UserCheck },
     { id: "admin-teachers", label: "Teachers", icon: Users },
     { id: "admin-events", label: "Events", icon: PartyPopper },
+    { id: "admin-pricing", label: "Pricing", icon: Tag },
     { id: "admin-broadcast", label: "Broadcast", icon: Megaphone },
   ];
 
@@ -1441,6 +1480,7 @@ export default function App({ onAdminChange, initialAdmin = false }) {
       case "admin-schedule": return <AdminSchedulePage />;
       case "admin-teachers": return <AdminTeachersPage />;
       case "admin-events": return <AdminEventsPage />;
+      case "admin-pricing": return <AdminPricingPage />;
       case "admin-broadcast": return <AdminBroadcastPage />;
       default: return <HomePage />;
     }
@@ -1450,40 +1490,59 @@ export default function App({ onAdminChange, initialAdmin = false }) {
   if (isAdmin) {
     return (
       <AppContext.Provider value={{ page, setPage, classRegistrations, registerForClass, openReservation, feedCelebrations, celebrateFeed }}>
-        <div style={{ display: "flex", minHeight: "100vh", background: "#151210", fontFamily: "'DM Sans', system-ui, sans-serif", color: "#fff" }}>
-          <aside style={{ width: 240, background: "#1a1714", borderRight: "1px solid #3a3528", display: "flex", flexDirection: "column", position: "fixed", height: "100vh" }}>
-            <div style={{ padding: "16px 14px", borderBottom: "1px solid #3a3528" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <div style={{ width: 38, height: 38, borderRadius: 10, background: T.accent, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Playfair Display', serif", fontSize: 14, color: "#fff", fontWeight: 700 }}>{STUDIO_CONFIG.logoMark}</div>
-                <div>
-                  <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 18, color: "#fff", letterSpacing: "0.02em" }}>{STUDIO_CONFIG.name}</span>
-                  <span style={{ display: "block", fontSize: 9, color: "#71717a", textTransform: "uppercase", letterSpacing: "0.15em" }}>Admin Portal</span>
+        <div style={{ display: "flex", flexDirection: "column", height: "100vh", background: "#151210", fontFamily: "'DM Sans', system-ui, sans-serif", color: "#fff" }}>
+          {/* Admin Top Bar */}
+          <div style={{ flexShrink: 0, background: `linear-gradient(135deg, ${T.bg}, hsl(28,22%,18%))`, padding: "10px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #3a3528" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
+              <button onClick={() => { setIsAdmin(false); setPage("home"); onAdminChange?.(false); }} style={{ display: "flex", alignItems: "center", gap: 6, background: "none", border: "none", color: "#fff", fontSize: 13, fontWeight: 600, cursor: "pointer" }}>
+                <ArrowLeft size={16} /> Back to LUMI
+              </button>
+              <span style={{ fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 4, background: "rgba(255,255,255,0.1)", color: "#fff" }}>Sellwood Yoga Demo</span>
+            </div>
+            <p style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", textAlign: "center", flex: 1, margin: "0 24px", lineHeight: 1.4 }}>
+              Live interactive demo built for <strong style={{ color: "#fff" }}>Sellwood Yoga</strong>. This link is not publicly listed. This prototype includes copyrighted images that are not intended for publication. They will be replaced with media chosen by the client and nothing will be published without expressed permission from rights holders.
+            </p>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
+              <Sparkles size={16} color="#fff" />
+              <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 16, color: "#fff", fontWeight: 700, letterSpacing: "0.05em" }}>LUMI</span>
+            </div>
+          </div>
+          {/* Admin Body */}
+          <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
+            <aside style={{ width: 240, background: "#1a1714", borderRight: "1px solid #3a3528", display: "flex", flexDirection: "column", flexShrink: 0 }}>
+              <div style={{ padding: "16px 14px", borderBottom: "1px solid #3a3528" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <div style={{ width: 38, height: 38, borderRadius: 10, background: T.accent, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Playfair Display', serif", fontSize: 14, color: "#fff", fontWeight: 700 }}>{STUDIO_CONFIG.logoMark}</div>
+                  <div>
+                    <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 18, color: "#fff", letterSpacing: "0.02em" }}>{STUDIO_CONFIG.name}</span>
+                    <span style={{ display: "block", fontSize: 9, color: "#71717a", textTransform: "uppercase", letterSpacing: "0.15em" }}>Admin Portal</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <nav style={{ flex: 1, padding: "12px 8px", overflow: "auto" }}>
-              <p style={{ fontSize: 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#71717a", padding: "0 10px", margin: "0 0 8px" }}>Management</p>
-              {adminTabs.map(tab => {
-                const active = page === tab.id;
-                return (
-                  <button key={tab.id} onClick={() => setPage(tab.id)} style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 12px", borderRadius: 8, border: "none", background: active ? T.accent : "transparent", color: active ? "#fff" : "#a1a1aa", fontSize: 13, fontWeight: active ? 600 : 400, cursor: "pointer", marginBottom: 2, textAlign: "left" }}>
-                    <tab.icon size={18} />
-                    <span>{tab.label}</span>
-                    {active && <ChevronRight size={14} style={{ marginLeft: "auto", opacity: 0.6 }} />}
-                  </button>
-                );
-              })}
-            </nav>
-            <div style={{ borderTop: "1px solid #3a3528", padding: "10px 8px" }}>
-              <button onClick={() => { setIsAdmin(false); setPage("home"); onAdminChange?.(false); }} style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 12px", borderRadius: 8, border: "none", background: "transparent", color: "#a1a1aa", fontSize: 13, cursor: "pointer", textAlign: "left" }}>
-                <LogOut size={18} />
-                <span>Exit Admin</span>
-              </button>
-            </div>
-          </aside>
-          <main style={{ flex: 1, marginLeft: 240, padding: 24, overflow: "auto" }}>
-            {renderPage()}
-          </main>
+              <nav style={{ flex: 1, padding: "12px 8px", overflow: "auto" }}>
+                <p style={{ fontSize: 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#71717a", padding: "0 10px", margin: "0 0 8px" }}>Management</p>
+                {adminTabs.map(tab => {
+                  const active = page === tab.id;
+                  return (
+                    <button key={tab.id} onClick={() => setPage(tab.id)} style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 12px", borderRadius: 8, border: "none", background: active ? T.accent : "transparent", color: active ? "#fff" : "#a1a1aa", fontSize: 13, fontWeight: active ? 600 : 400, cursor: "pointer", marginBottom: 2, textAlign: "left" }}>
+                      <tab.icon size={18} />
+                      <span>{tab.label}</span>
+                      {active && <ChevronRight size={14} style={{ marginLeft: "auto", opacity: 0.6 }} />}
+                    </button>
+                  );
+                })}
+              </nav>
+              <div style={{ borderTop: "1px solid #3a3528", padding: "10px 8px" }}>
+                <button onClick={() => { setIsAdmin(false); setPage("home"); onAdminChange?.(false); }} style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 12px", borderRadius: 8, border: "none", background: "transparent", color: "#a1a1aa", fontSize: 13, cursor: "pointer", textAlign: "left" }}>
+                  <LogOut size={18} />
+                  <span>Exit Admin</span>
+                </button>
+              </div>
+            </aside>
+            <main style={{ flex: 1, padding: 24, overflowY: "auto" }}>
+              {renderPage()}
+            </main>
+          </div>
         </div>
       </AppContext.Provider>
     );
@@ -1492,10 +1551,10 @@ export default function App({ onAdminChange, initialAdmin = false }) {
   // ——— CONSUMER LAYOUT ———
   return (
     <AppContext.Provider value={{ page, setPage, classRegistrations, registerForClass, openReservation, feedCelebrations, celebrateFeed }}>
-      <div style={{ maxWidth: 390, margin: "0 auto", minHeight: "100vh", background: T.bgDim, fontFamily: "'DM Sans', system-ui, sans-serif", position: "relative" }}>
+      <div style={{ maxWidth: 390, margin: "0 auto", height: "100%", minHeight: "100vh", background: T.bgDim, fontFamily: "'DM Sans', system-ui, sans-serif", position: "relative", display: "flex", flexDirection: "column" }}>
         
         {/* Header */}
-        <header style={{ position: "sticky", top: 0, zIndex: 30, background: T.bg, color: "#fff", padding: "10px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <header style={{ flexShrink: 0, zIndex: 30, background: T.bg, color: "#fff", padding: "10px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, color: "#fff" }}>
             <div style={{ width: 38, height: 38, borderRadius: 10, background: T.accent, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Playfair Display', serif", fontSize: 14, color: "#fff", fontWeight: 700 }}>{STUDIO_CONFIG.logoMark}</div>
             <div style={{ display: "flex", flexDirection: "column" }}>
@@ -1518,13 +1577,13 @@ export default function App({ onAdminChange, initialAdmin = false }) {
         </header>
 
         {/* Content */}
-        <main ref={contentRef} style={{ paddingBottom: 80 }}>
+        <main ref={contentRef} style={{ flex: 1, overflowY: "auto" }}>
           {renderPage()}
         </main>
 
         {/* More Menu */}
         {showMore && (
-          <div onClick={() => setShowMore(false)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,.5)", backdropFilter: "blur(4px)", zIndex: 40 }}>
+          <div onClick={() => setShowMore(false)} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,.5)", backdropFilter: "blur(4px)", zIndex: 40 }}>
             <div onClick={e => e.stopPropagation()} style={{ position: "absolute", bottom: 68, left: 16, right: 16, maxWidth: 358, margin: "0 auto", background: T.bgCard, borderRadius: 16, padding: "14px 12px", boxShadow: "0 8px 32px rgba(0,0,0,.15)" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0 6px 8px" }}>
                 <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 20 }}>More</span>
@@ -1546,7 +1605,7 @@ export default function App({ onAdminChange, initialAdmin = false }) {
         )}
 
         {/* Bottom Nav */}
-        <nav style={{ position: "sticky", bottom: 0, zIndex: 30, background: T.bgCard, borderTop: `1px solid ${T.border}`, maxWidth: 390, margin: "0 auto" }}>
+        <nav style={{ flexShrink: 0, zIndex: 30, background: T.bgCard, borderTop: `1px solid ${T.border}` }}>
           <div style={{ display: "flex", justifyContent: "space-around", padding: "6px 4px 10px" }}>
             {mainTabs.map(tab => {
               const active = tab.id === "more" ? (isMoreActive || showMore) : page === tab.id;
