@@ -64,9 +64,9 @@ export default function DemoWrapper() {
       </div>
 
       {/* RIGHT SIDEBAR */}
-      <aside style={{ width: 380, flexShrink: 0, position: "sticky", top: 0, height: "100vh", overflowY: "auto", padding: "40px 28px" }}
+      <aside style={{ width: 340, flexShrink: 0, position: "sticky", top: 0, height: "100vh", overflowY: "auto", padding: "32px 24px" }}
         className="demo-sidebar-right demo-hide-scrollbar">
-        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
           {[
             [Shield, "Admin Dashboard", "Tap the shield icon in the app header to access the full admin suite -- analytics, member CRM, scheduling, and broadcast tools."],
             [Sparkles, `Built for ${DEMO.fullName}`, `Custom-designed around your brand, class types, teachers, and the welcoming community your members already love.`],
@@ -74,17 +74,17 @@ export default function DemoWrapper() {
             [Smartphone, "Member Engagement", `Practice streaks, milestone badges, community celebrations, and guest passes keep members connected and motivated.`],
             [Palette, "Your Brand, Your App", `Custom-designed with your studio's colors, fonts, and personality -- every pixel reflects the ${DEMO.fullName} brand.`],
           ].map(([Icon, title, desc], i) => (
-            <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "28px 24px", border: "1px solid #e8e4de" }}>
-              <Icon size={28} color={DEMO.accent} style={{ display: "block", marginBottom: 14 }} />
-              <h3 style={{ fontSize: 22, fontWeight: 700, margin: "0 0 10px", color: "#2a2218" }}>{title}</h3>
-              <p style={{ fontSize: 15, color: "#6a6050", lineHeight: 1.6, margin: 0 }}>{desc}</p>
+            <div key={i} style={{ background: "#fff", borderRadius: 14, padding: "20px 18px", border: "1px solid #e8e4de" }}>
+              <Icon size={22} color={DEMO.accent} style={{ display: "block", marginBottom: 10 }} />
+              <h3 style={{ fontSize: 18, fontWeight: 700, margin: "0 0 6px", color: "#2a2218" }}>{title}</h3>
+              <p style={{ fontSize: 13.5, color: "#6a6050", lineHeight: 1.55, margin: 0 }}>{desc}</p>
             </div>
           ))}
 
-          <div style={{ background: DEMO.accent, borderRadius: 16, padding: "28px 24px", color: "#fff", textAlign: "center" }}>
-            <h3 style={{ fontSize: 22, fontWeight: 700, margin: "0 0 8px" }}>Ready to Launch?</h3>
-            <p style={{ fontSize: 15, opacity: 0.85, lineHeight: 1.5, margin: "0 0 18px" }}>Get your studio's custom loyalty app built and deployed in weeks, not months.</p>
-            <button style={{ padding: "12px 28px", borderRadius: 8, border: "2px solid rgba(255,255,255,0.5)", background: "transparent", color: "#fff", fontWeight: 700, fontSize: 15, cursor: "pointer" }}>
+          <div style={{ background: DEMO.accent, borderRadius: 14, padding: "20px 18px", color: "#fff", textAlign: "center" }}>
+            <h3 style={{ fontSize: 18, fontWeight: 700, margin: "0 0 6px" }}>Ready to Launch?</h3>
+            <p style={{ fontSize: 13.5, opacity: 0.85, lineHeight: 1.5, margin: "0 0 14px" }}>Get your studio's custom loyalty app built and deployed in weeks, not months.</p>
+            <button style={{ padding: "10px 24px", borderRadius: 8, border: "2px solid rgba(255,255,255,0.5)", background: "transparent", color: "#fff", fontWeight: 700, fontSize: 14, cursor: "pointer" }}>
               Get Started
             </button>
           </div>
