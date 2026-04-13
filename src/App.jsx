@@ -315,16 +315,16 @@ function HomePage() {
       {/* Hero */}
       <section style={{ background: `linear-gradient(165deg, ${T.bg} 0%, hsl(28,22%,18%) 100%)`, color: "#fff", padding: "32px 22px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${STUDIO_IMAGES.heroMain})`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.55 }} />
-        <div style={{ position: "absolute", inset: 0, opacity: 0.15, background: "radial-gradient(circle at 70% 20%, rgba(255,255,255,.3) 0%, transparent 60%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 60%, transparent 100%)" }} />
         <div style={{ position: "relative" }}>
-          <p style={{ color: T.accent, fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 8 }}>
+          <p style={{ color: T.accent, fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 8, textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>
             {formatDateLong(today)}
           </p>
-          <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 50, lineHeight: 0.95, letterSpacing: "-0.02em", margin: 0, fontWeight: 400 }}>
+          <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 50, lineHeight: 0.95, letterSpacing: "-0.02em", margin: 0, fontWeight: 400, textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}>
             {STUDIO_CONFIG.heroLine1}<br/>
             <span style={{ color: T.accent, fontStyle: "italic" }}>{STUDIO_CONFIG.heroLine2}</span>
           </h1>
-          <p style={{ color: "#b8a898", fontSize: 13, maxWidth: 280, marginTop: 10, lineHeight: 1.5 }}>{STUDIO_CONFIG.description}</p>
+          <p style={{ color: "#d4c4b4", fontSize: 13, maxWidth: 280, marginTop: 10, lineHeight: 1.5, textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>{STUDIO_CONFIG.description}</p>
         </div>
       </section>
 
