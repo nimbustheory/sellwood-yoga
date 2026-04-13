@@ -289,7 +289,7 @@ const AppContext = createContext(null);
 // ═══════════════════════════════════════════════════════════════
 function PageHero({ title, subtitle, image }) {
   return (
-    <section style={{ position: "relative", overflow: "hidden", height: 160 }}>
+    <section style={{ position: "relative", overflow: "hidden", height: 208 }}>
       <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${image})`, backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(0.7)", willChange: "transform" }} />
       <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 50%, ${T.bgDim} 100%)` }} />
       <div style={{ position: "relative", height: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "0 20px 18px" }}>
@@ -314,8 +314,8 @@ function HomePage() {
     <div className="pb-6">
       {/* Hero */}
       <section style={{ background: `linear-gradient(165deg, ${T.bg} 0%, hsl(28,22%,18%) 100%)`, color: "#fff", padding: "32px 22px", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${STUDIO_IMAGES.heroMain})`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.21 }} />
-        <div style={{ position: "absolute", inset: 0, opacity: 0.05, background: "radial-gradient(circle at 70% 20%, rgba(255,255,255,.3) 0%, transparent 60%)" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${STUDIO_IMAGES.heroMain})`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.15 }} />
+        <div style={{ position: "absolute", inset: 0, opacity: 0.035, background: "radial-gradient(circle at 70% 20%, rgba(255,255,255,.3) 0%, transparent 60%)" }} />
         <div style={{ position: "relative" }}>
           <p style={{ color: T.accent, fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 8 }}>
             {formatDateLong(today)}
