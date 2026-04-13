@@ -314,8 +314,8 @@ function HomePage() {
     <div className="pb-6">
       {/* Hero */}
       <section style={{ background: `linear-gradient(165deg, ${T.bg} 0%, hsl(28,22%,18%) 100%)`, color: "#fff", padding: "32px 22px", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${STUDIO_IMAGES.heroMain})`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.55 }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.04) 60%, transparent 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${STUDIO_IMAGES.heroMain})`, backgroundSize: "cover", backgroundPosition: "center" }} />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.30)" }} />
         <div style={{ position: "relative" }}>
           <p style={{ color: T.accent, fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 8, textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>
             {formatDateLong(today)}
