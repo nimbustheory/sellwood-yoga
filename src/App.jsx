@@ -315,16 +315,16 @@ function HomePage() {
       {/* Hero */}
       <section style={{ background: `linear-gradient(165deg, ${T.bg} 0%, hsl(28,22%,18%) 100%)`, color: "#fff", padding: "32px 22px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${STUDIO_IMAGES.heroMain})`, backgroundSize: "cover", backgroundPosition: "center" }} />
-        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.30)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.15)" }} />
         <div style={{ position: "relative" }}>
-          <p style={{ color: T.accent, fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 8, textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>
+          <p style={{ color: "hsl(155,45%,65%)", fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 8, textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>
             {formatDateLong(today)}
           </p>
           <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 50, lineHeight: 0.95, letterSpacing: "-0.02em", margin: 0, fontWeight: 400, textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}>
             {STUDIO_CONFIG.heroLine1}<br/>
-            <span style={{ color: T.accent, fontStyle: "italic" }}>{STUDIO_CONFIG.heroLine2}</span>
+            <span style={{ color: "hsl(155,45%,65%)", fontStyle: "italic" }}>{STUDIO_CONFIG.heroLine2}</span>
           </h1>
-          <p style={{ color: "#d4c4b4", fontSize: 13, maxWidth: 280, marginTop: 10, lineHeight: 1.5, textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>{STUDIO_CONFIG.description}</p>
+          <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 13, maxWidth: 280, marginTop: 10, lineHeight: 1.5, textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>{STUDIO_CONFIG.description}</p>
         </div>
       </section>
 
