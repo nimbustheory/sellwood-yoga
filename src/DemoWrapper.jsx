@@ -1,106 +1,151 @@
 import { useState } from "react";
-import App from "./App.jsx";
-import { DEMO } from "./demo.config.js";
 import {
-  Calendar, Flame, MessageCircle, Users, CreditCard, CalendarDays,
-  Bell, BarChart3, Shield, Sparkles, MapPin, Smartphone, Palette
+  Calendar, TrendingUp, Users, Heart, Sparkles, Layers,
+  Bell, Headphones, ChevronRight, Monitor, Smartphone, Star, Shield, Zap, MapPin
 } from "lucide-react";
+import App from "./App.jsx";
+import { DEMO_CONFIG } from "./demo.config.js";
+
+const iconMap = { Sparkles, Layers, Heart, Shield, Star, Zap, Calendar, TrendingUp, Users, Bell, Headphones, Monitor, Smartphone, MapPin };
+const getIcon = (name) => iconMap[name] || Star;
 
 export default function DemoWrapper() {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const c = DEMO_CONFIG;
+  const accent = c.accent;
+  const accentDark = c.accentDark;
+  const [isFullAdmin, setIsFullAdmin] = useState(false);
 
-  // Admin mode: full browser, no phone frame or sidebars
-  if (isAdmin) {
-    return <App initialAdmin={true} onAdminChange={(admin) => setIsAdmin(admin)} />;
-  }
-
-  // Consumer mode: phone mockup with sidebars
-  return (
-    <div style={{ display: "flex", justifyContent: "center", minHeight: "100vh", background: "#f5f3f0", fontFamily: "'DM Sans', system-ui, sans-serif" }}>
-
-      {/* LEFT SIDEBAR */}
-      <aside style={{ width: 340, flexShrink: 0, position: "sticky", top: 0, height: "100vh", overflowY: "auto", padding: "40px 32px", borderRight: "1px solid #e8e4de" }}
-        className="demo-sidebar-left demo-hide-scrollbar">
-        <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.15em", color: DEMO.accent, textTransform: "uppercase", marginBottom: 28 }}>Prototype Demo</p>
-
-        <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 32 }}>
-          <img src={DEMO.logoImage} alt="" style={{ width: 52, height: 52, borderRadius: 12, objectFit: "contain", background: "#fff", padding: 2 }}
-            onError={e => { e.target.style.display = "none"; }} />
-          <div>
-            <h1 style={{ fontSize: 26, fontWeight: 800, margin: 0, color: "#2a2218", letterSpacing: "0.02em" }}>{DEMO.name}</h1>
-            <p style={{ fontSize: 15, color: "#8a8070", margin: 0 }}>{DEMO.subtitle}</p>
-          </div>
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
-          {[
-            [Calendar, "Class Scheduling", "Weekly schedule with real-time reservations"],
-            [Flame, "Practice Tracking", "Reflections, streaks, and milestone badges"],
-            [MessageCircle, "Community Feed", "Member milestones and celebrations"],
-            [Users, "Teacher Profiles", "Bios, certifications, and specialties"],
-            [CreditCard, "Membership Tiers", `${DEMO.membershipCount} plans from intro to unlimited`],
-            [CalendarDays, "Events & Workshops", "Special sessions and teacher training"],
-            [Bell, "Smart Notifications", "Class reminders and streak alerts"],
-            [BarChart3, "Admin Dashboard", "Full analytics, CRM, and broadcast tools"],
-          ].map(([Icon, title, desc], i) => (
-            <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-              <Icon size={20} color={DEMO.accent} style={{ marginTop: 2, flexShrink: 0 }} />
-              <div>
-                <p style={{ fontWeight: 700, fontSize: 16, margin: 0, color: "#2a2218" }}>{title}</p>
-                <p style={{ fontSize: 14, color: "#8a8070", margin: "3px 0 0", lineHeight: 1.5 }}>{desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <p style={{ fontSize: 12, color: "#b0a898", marginTop: 36, letterSpacing: "0.03em" }}>BUILT BY LUMI -- LUMICLASS.APP</p>
-      </aside>
-
-      {/* CENTER PHONE */}
-      <div style={{ width: 390, flexShrink: 0, position: "sticky", top: 0, height: "100vh", overflow: "hidden", boxShadow: "0 8px 40px rgba(0,0,0,.12), 0 2px 12px rgba(0,0,0,.06)", borderRadius: 0, transform: "translateZ(0)" }}>
-        <div style={{ width: "100%", height: "100%", overflow: "hidden" }} id="phone-scroll">
-          <App onAdminChange={(admin) => setIsAdmin(admin)} />
+  if (isFullAdmin) {
+    return (
+      <div style={{ display: "flex", flexDirection: "column", height: "100vh", fontFamily: "'Outfit', system-ui, sans-serif" }}>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+          <App startInAdmin={true} onExitAdmin={() => setIsFullAdmin(false)} />
         </div>
       </div>
+    );
+  }
 
-      {/* RIGHT SIDEBAR */}
-      <aside style={{ width: 340, flexShrink: 0, position: "sticky", top: 0, height: "100vh", overflowY: "auto", padding: "32px 24px" }}
-        className="demo-sidebar-right demo-hide-scrollbar">
-        <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-          {[
-            [Shield, "Admin Dashboard", "Tap the shield icon in the app header to access the full admin suite -- analytics, member CRM, scheduling, and broadcast tools."],
-            [Sparkles, `Built for ${DEMO.fullName}`, `Custom-designed around your brand, class types, teachers, and the welcoming community your members already love.`],
-            [MapPin, "All-in-One Platform", "Handles booking, payments, and member management natively -- no third-party software needed."],
-            [Smartphone, "Member Engagement", `Practice streaks, milestone badges, community celebrations, and guest passes keep members connected and motivated.`],
-            [Palette, "Your Brand, Your App", `Custom-designed with your studio's colors, fonts, and personality -- every pixel reflects the ${DEMO.fullName} brand.`],
-          ].map(([Icon, title, desc], i) => (
-            <div key={i} style={{ background: "#fff", borderRadius: 14, padding: "20px 18px", border: "1px solid #e8e4de" }}>
-              <Icon size={22} color={DEMO.accent} style={{ display: "block", marginBottom: 10 }} />
-              <h3 style={{ fontSize: 18, fontWeight: 700, margin: "0 0 6px", color: "#2a2218" }}>{title}</h3>
-              <p style={{ fontSize: 13.5, color: "#6a6050", lineHeight: 1.55, margin: 0 }}>{desc}</p>
-            </div>
-          ))}
+  return (
+    <div style={{ display: "flex", height: "100vh", fontFamily: "'Outfit', system-ui, sans-serif", color: "#1a1a1a", background: "#f5f5f5", overflow: "hidden" }}>
 
-          <div style={{ background: DEMO.accent, borderRadius: 14, padding: "20px 18px", color: "#fff", textAlign: "center" }}>
-            <h3 style={{ fontSize: 18, fontWeight: 700, margin: "0 0 6px" }}>Ready to Launch?</h3>
-            <p style={{ fontSize: 13.5, opacity: 0.85, lineHeight: 1.5, margin: "0 0 14px" }}>Get your studio's custom loyalty app built and deployed in weeks, not months.</p>
-            <button style={{ padding: "10px 24px", borderRadius: 8, border: "2px solid rgba(255,255,255,0.5)", background: "transparent", color: "#fff", fontWeight: 700, fontSize: 14, cursor: "pointer" }}>
-              Get Started
-            </button>
+        {/* --- LEFT SIDEBAR --- */}
+        <aside className="demo-sidebar" style={{ width: 320, flexShrink: 0, background: "#fff", borderRight: "1px solid #e5e7eb", display: "flex", flexDirection: "column", overflowY: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }}>
+          {/* Prototype Label */}
+          <div style={{ padding: "16px 24px 0" }}>
+            <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: accent, background: `${accent}12`, padding: "4px 10px", borderRadius: 4 }}>Prototype Demo</span>
           </div>
-        </div>
-      </aside>
 
-      <style>{`
-        @media (max-width: 1200px) {
-          .demo-sidebar-right { display: none !important; }
-        }
-        @media (max-width: 800px) {
-          .demo-sidebar-left { display: none !important; }
-        }
-        .demo-hide-scrollbar::-webkit-scrollbar { display: none; }
-        .demo-hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-      `}</style>
+          {/* Studio Identity */}
+          <div style={{ padding: "20px 24px 16px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={{ width: 44, height: 44, borderRadius: 12, background: accent, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Fraunces', serif", fontSize: 22, fontWeight: 700, color: "#fff" }}>
+                {c.studio.logo}
+              </div>
+              <div>
+                <div style={{ fontFamily: "'Fraunces', serif", fontSize: 18, fontWeight: 600, letterSpacing: "0.02em", color: "#111827" }}>{c.studio.name}</div>
+                <div style={{ fontSize: 11, color: "#6b7280", marginTop: 1 }}>{c.studio.tagline}</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Feature List */}
+          <div style={{ padding: "0 24px", flex: 1 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#9ca3af", marginBottom: 12 }}>App Features</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+              {c.features.map((f, i) => {
+                const FeatureIcon = getIcon(f.icon);
+                return (
+                  <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10, padding: "8px 10px", borderRadius: 8, background: "#f9fafb" }}>
+                    <div style={{ width: 28, height: 28, borderRadius: 6, background: `${accent}12`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
+                      <FeatureIcon size={14} color={accent} />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: 13, fontWeight: 600, color: "#374151" }}>{f.label}</div>
+                      <div style={{ fontSize: 11, color: "#9ca3af", marginTop: 1, lineHeight: 1.3 }}>{f.description}</div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div style={{ padding: "16px 24px 20px", borderTop: "1px solid #e5e7eb" }}>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9ca3af", textAlign: "center" }}>
+              Built by <span style={{ color: accent }}>LUMI</span> — LumiClass.App
+            </div>
+          </div>
+        </aside>
+
+        {/* --- CENTER: PHONE FRAME --- */}
+        <main style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "flex-start", paddingTop: 32, paddingBottom: 32, overflowY: "auto" }}>
+          <div style={{ position: "relative" }}>
+            {/* Phone chrome */}
+            <div style={{
+              width: 414, background: "#1a1a24", borderRadius: 40, padding: "12px 12px",
+              boxShadow: "0 0 0 1px #2a2a34, 0 20px 60px rgba(0,0,0,.3), 0 0 120px rgba(72,168,140,.04)"
+            }}>
+              {/* Notch */}
+              <div style={{ width: 120, height: 6, background: "#2a2a34", borderRadius: 3, margin: "0 auto 8px" }} />
+              {/* Screen container */}
+              <div style={{
+                width: 390, height: 720, borderRadius: 28, overflow: "hidden", background: "white",
+                position: "relative"
+              }}>
+                <App onEnterAdmin={() => setIsFullAdmin(true)} />
+              </div>
+              {/* Home indicator */}
+              <div style={{ width: 134, height: 5, background: "#3a3a44", borderRadius: 3, margin: "8px auto 4px" }} />
+            </div>
+          </div>
+        </main>
+
+        {/* --- RIGHT SIDEBAR --- */}
+        <aside className="demo-sidebar" style={{ width: 340, flexShrink: 0, background: "#fff", borderLeft: "1px solid #e5e7eb", overflowY: "auto", padding: "24px 20px", scrollbarWidth: "none", msOverflowStyle: "none" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            {c.salesCards.map((card, i) => {
+              const IconComp = card.icon === "Shield" ? Shield : getIcon(card.icon);
+              const isAdminCard = card.title === "Admin Dashboard";
+              return (
+                <div key={i} style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 14, padding: "18px 16px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+                    <div style={{ width: 36, height: 36, borderRadius: 10, background: `${accent}12`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      {isAdminCard ? <Shield size={18} color={accent} /> : <IconComp size={18} color={accent} />}
+                    </div>
+                    <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: 18, fontWeight: 600, color: "#111827", margin: 0 }}>{card.title}</h3>
+                  </div>
+                  <p style={{ fontSize: 12, color: "#6b7280", lineHeight: 1.6, margin: 0 }}>{card.description}</p>
+                  {isAdminCard && (
+                    <button onClick={() => setIsFullAdmin(true)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, width: "100%", padding: "10px 0", marginTop: 14, borderRadius: 8, border: "none", background: accent, color: "#fff", fontWeight: 700, fontSize: 14, cursor: "pointer" }}>
+                      <Shield size={16} /> Open Admin
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+
+            {/* CTA Card */}
+            <div style={{ background: `linear-gradient(135deg, ${accent}12, ${accentDark}08)`, border: `1px solid ${accent}30`, borderRadius: 14, padding: "22px 18px", textAlign: "center" }}>
+              <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: 22, fontWeight: 600, color: "#111827", margin: "0 0 6px" }}>{c.cta.heading}</h3>
+              <p style={{ fontSize: 13, color: "#6b7280", margin: "0 0 16px", lineHeight: 1.4 }}>{c.cta.subheading}</p>
+              <a href={c.cta.buttonUrl} target="_blank" rel="noopener noreferrer" style={{
+                display: "inline-flex", alignItems: "center", gap: 6, padding: "12px 28px",
+                borderRadius: 10, background: accent, color: "#fff", fontWeight: 700, fontSize: 14,
+                textDecoration: "none", letterSpacing: "0.02em"
+              }}>
+                {c.cta.buttonText} <ChevronRight size={16} />
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        {/* Responsive collapse for small viewports */}
+        <style>{`
+          @media (max-width: 1100px) {
+            .demo-sidebar { display: none !important; }
+          }
+          .demo-sidebar::-webkit-scrollbar { display: none; }
+        `}</style>
     </div>
   );
 }
